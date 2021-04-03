@@ -37,10 +37,11 @@ public class UdpServer {
     public void run() throws IOException {
         
         while (running) {
-            receivePackets();
+             receivePackets();
             if("TEST".equals(env)){
                 break;
             }
+            System.out.println("Running..........");
         }
     }
 
