@@ -2,15 +2,12 @@ package com.gg.kata;
 
 public class Yatzy {
 
-    protected int[] dice;
 
-    public Yatzy(int d1, int d2, int d3, int d4, int _5) {
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = _5;
+    private final DiceHand diceHand;
+
+
+    public Yatzy(DiceHand diceHand) {
+        this.diceHand = diceHand;
     }
 
     public static int chance(int d1, int d2, int d3, int d4, int d5) {
@@ -200,7 +197,7 @@ public class Yatzy {
         int sum;
         sum = 0;
         for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
+            if (diceHand.getDice()[at] == 4) {
                 sum += 4;
             }
         }
@@ -210,17 +207,30 @@ public class Yatzy {
     public int fives() {
         int s = 0;
         int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
+        for (i = 0; i < diceHand.getDice().length; i++)
+            if (diceHand.getDice()[i] == 5)
                 s = s + 5;
         return s;
     }
 
     public int sixes() {
         int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
+        for (int at = 0; at < diceHand.getDice().length; at++)
+            if (diceHand.getDice()[at] == 6)
                 sum = sum + 6;
         return sum;
+    }
+}
+
+
+class DiceHand {
+    private final int[] dice;
+
+    DiceHand(int d1, int d2, int d3, int d4, int d5) {
+        dice = new int[]{d1, d2, d3, d4, d5};
+    }
+
+    public int[] getDice() {
+        return dice;
     }
 }
